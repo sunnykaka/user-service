@@ -1,0 +1,17 @@
+1.除了private方法，都需要写返回值
+2.注意不可变
+3.自动return的坑
+4.call by name, call by value
+5.换行的话，操作符放在行末
+6.repo只负责持久化实体，不处理业务
+7.case class不可变，用copy修改值
+8.如果是insert数据,注意repository的save操作之后,实体的id依然是None
+9.数据库字段设置为可空的,实体要用Option,代码中尽量不出现任何null
+10.善用sbt，当编译出现奇怪错误时，使用clean.使用test跑所有测试
+11.异常处理，尽量少用try/catch，多用Try。业务层面尽量少用throw new抛出异常，多用Either或Option
+12.分层:Controller/Service/Repository/Entity
+13.命名规则不要考虑JavaBean
+
+curl -X POST http://localhost:9000/auth/signup -H 'Content-Type: application/json' -d '{"username": "sunnykaka", "identifier": "merle@test.it", "password": "111111"}' -v
+
+curl -X POST http://localhost:9000/auth/signin -H 'Content-Type: application/json' -d '{"identifier": "merle@test.it", "password": "111111"}' -v
