@@ -23,7 +23,7 @@ class ApplicationController @Inject() (
    *
    * @return The result to display.
    */
-  def index = UserAwareAction.async { implicit request => Future.successful(Ok)
+  def index = UserAwareAction.async { implicit request =>
     request.identity match {
       case Some(user) => Future.successful(Ok(Json.toJson(user)))
       case None => Future.successful(Ok(JsString("you are not logged! Login man!")))

@@ -25,7 +25,8 @@ object ApplicationBuild extends Build {
   lazy val mainProject = Project(appName, file(".")).enablePlugins(play.PlayScala).settings(
     scalaVersion := commonScalaVersion,
     version := appVersion,
-    libraryDependencies ++= appDependencies
+    libraryDependencies ++= appDependencies,
+    resolvers += "local repository" at "http://192.168.1.100:8081/nexus/content/groups/public/"
   )
 
 }
