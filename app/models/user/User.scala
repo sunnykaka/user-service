@@ -40,8 +40,7 @@ object User{
   implicit val GetResultUser = GR { r =>
     import r._
     //    User(<<?[Long], <<?[String], <<?[String], <<?[String].map(User.Gender.withName), <<?[java.sql.Date].map(new DateTime(_)))
-    User(id = <<?[Long], username = <<?[String], email = <<?[String],
-      gender = <<?[User.Gender.Value], birthday = <<?[DateTime])
+    User(<<?[Long], <<?[String], <<?[String], <<?[User.Gender.Value], <<?[DateTime])
   }
 
   //json
