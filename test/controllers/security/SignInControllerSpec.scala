@@ -52,7 +52,7 @@ class SignInControllerSpec extends PlaySpec with OneAppPerSuite {
 
     }
 
-    "用户登录失败,用户不存在或者密码错误" in {
+    "用户登录失败,用户不存在" in {
 
       val request = FakeRequest(POST, routes.SignInController.signIn().url).
         withJsonBody(Json.toJson(

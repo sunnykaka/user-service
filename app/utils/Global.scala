@@ -56,7 +56,7 @@ object Global extends GlobalSettings with SecuredSettings with Logger {
   override def onNotAuthenticated(request: RequestHeader, lang: Lang): Option[Future[Result]] = {
     //controllers.StaticResponse.onNotAuthenticated(request, lang)
     implicit val r = request
-    Some(Future { Unauthorized(Error(UserErrors.CredentialsNotCorrect)) })
+    Some(Future { Unauthorized(Error(UserErrors.UserUnauthorized)) })
   }
 
   /**
@@ -71,7 +71,7 @@ object Global extends GlobalSettings with SecuredSettings with Logger {
   override def onNotAuthorized(request: RequestHeader, lang: Lang): Option[Future[Result]] = {
     //controllers.StaticResponse.onNotAuthorized(request, lang)
     implicit val r = request
-    Some(Future { Unauthorized(Error(UserErrors.CredentialsNotCorrect)) })
+    Some(Future { Forbidden(Error(UserErrors.UserForbidden)) })
   }
 
   /**
@@ -81,10 +81,11 @@ object Global extends GlobalSettings with SecuredSettings with Logger {
   override def onError(request: RequestHeader, ex: Throwable) = {
     Future.successful {
       implicit val r = request
-      if (play.api.Play.current.mode == Mode.Dev)
-        InternalServerError(Error(ErrorInfo.InternalServerError))
-      else
-        InternalServerError(Error(ErrorInfo.InternalServerError, ErrorInfo.InternalServerError.message + ex.getMessage))
+      val cause = ex.asInstanceOf[PlayException.ExceptionSource].getCause
+      cause match {
+        case e =>
+          InternalServerError(Error(ErrorInfo.InternalServerError))
+      }
     }
   }
 

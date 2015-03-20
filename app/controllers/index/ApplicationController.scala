@@ -29,5 +29,5 @@ class ApplicationController @Inject() (
       case None => Future.successful(Ok(JsString("you are not logged! Login man!")))
     }
   }
-  
+
 }

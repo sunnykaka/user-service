@@ -11,8 +11,8 @@ object ApplicationBuild extends Build {
   val appDependencies = Seq(
     ws,
     cache, // play cache external module
-    "com.mohiva" %% "play-silhouette" % "2.0-RC1",
-    "com.typesafe.play.plugins" %% "play-plugins-mailer" % "2.3.0",
+    "com.mohiva" %% "play-silhouette" % "2.0-RC2",
+    "com.typesafe.play" %% "play-mailer" % "2.4.0",
     "net.codingwell" %% "scala-guice" % "4.0.0-beta5",
     "com.typesafe.play" %% "play-slick" % "0.8.1",
     "com.github.tototoshi" %% "slick-joda-mapper" % "1.2.0",
